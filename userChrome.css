@@ -65,9 +65,9 @@
 
 /* showing only the back button */
 #back-button { display: -moz-inline-box !important; }
-#forward-button { display: none !important; }
+#forward-button { display: -moz-inline-box !important; }
 #stop-button { display: none !important; }
-#reload-button { display: none !important; }
+#reload-button { display: -moz-inline-box !important; }
 
 /* bookmark icon */
 #star-button { display: none !important; }
