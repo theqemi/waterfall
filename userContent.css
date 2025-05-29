@@ -1,0 +1,8 @@
+@-moz-document url("about:home"), url("about:newtab") {
+    .top-site-outer, .top-site-inner {
+        transition: transform 0.2s ease !important;
+    }
+    .top-site-outer:hover, .top-site-inner:hover {
+        transform: scaleY(1.025) !important;
+    }
+}
