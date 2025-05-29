@@ -57,6 +57,8 @@
     /* adds left and right margin to the container-tabs indicator */
     --container-tabs-indicator-margin: 0px;
 
+    /* Tab background color (matching search bar, 10% opacity) */
+    --tab-background-color: rgba(255, 255, 255, 0.025); /* Dark gray from search bar with 75% opacity */
 }
 
 /*---+---+---+---+---+---+---+
@@ -92,13 +94,35 @@
 #pageActionButton { display: none !important; }
 #page-action-buttons { display: none !important; }
 
-/* Button hover animation for all toolbar buttons and tab icons */
-toolbarbutton, .tab-close-button, .tab-icon-overlay {
+/* Button hover animation for toolbar buttons, bookmark items, and new tab tiles */
+toolbarbutton, .bookmark-item {
     transition: transform 0.2s ease !important;
 }
 
-toolbarbutton:hover, .tab-close-button:hover, .tab-icon-overlay:hover {
-    transform: scale(1.1) !important;
+toolbarbutton:hover, .bookmark-item:hover {
+    transform: scaleX(1.025) !important;
+}
+
+/* Remove animation from tab close button */
+.tab-close-button {
+    transition: none !important;
+}
+
+.tab-close-button:hover {
+    transform: none !important;
+}
+
+/* Ensure bookmark menu items (including Other Bookmarks) have the animation */
+#PlacesToolbarItems .bookmark-item,
+#bookmarks-menu-button .menu-iconic,
+#BMB_bookmarksPopup .bookmark-item {
+    transition: transform 0.2s ease !important;
+}
+
+#PlacesToolbarItems .bookmark-item:hover,
+#bookmarks-menu-button .menu-iconic:hover,
+#BMB_bookmarksPopup .bookmark-item:hover {
+    transform: scaleX(1.025) !important;
 }
 
 /*=============================================================================================*/
@@ -116,30 +140,50 @@ toolbarbutton:hover, .tab-close-button:hover, .tab-icon-overlay:hover {
     --tab-block-margin: 2px !important;
 }
 
-window,
-#main-window,
-#toolbar-menubar,
-#TabsToolbar,
-#PersonalToolbar,
-#navigator-toolbox,
-#sidebar-box,
-#nav-bar {
-    -moz-appearance: none !important;
-    border: none !important;
+/* Remove shadow/border between navigation bar and content area */
+#navigator-toolbox {
+    border-bottom: none !important;
     box-shadow: none !important;
 }
+#navigator-toolbox::after {
+    border-bottom: none !important;
+    box-shadow: none !important;
+    display: none !important;
+}
+#browser {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#appcontent {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#browser-bottombox {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#tabbrowser-tabbox {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#tabbrowser-tabpanels {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#webext-panels-stack {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+#content {
+    border-top: none !important;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
 
-/* Show Window Control Button */
-.titlebar-buttonbox-container { display: -moz-inline-box !important; }
-
-/* remove "padding" left and right from tabs */
-.titlebar-spacer { display: none !important; }
-
-/* remove gap after pinned tabs */
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-    > #tabbrowser-arrowscrollbox
-    > .tabbrowser-tab[first-visible-unpinned-tab] {
-    margin-inline-start: 0 !important;
+/* Highlight tabs with subtle background */
+.tabbrowser-tab > .tab-stack > .tab-background {
+    background-color: var(--tab-background-color) !important;
 }
 
 /* remove tab shadow */
